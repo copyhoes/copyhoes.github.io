@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Lobbyhoes Zeichen kopieren</title>
+  <style>
+    body {
+      background: #000;
+      color: white;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+    .symbol {
+      font-size: 100px;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.2s ease;
+    }
+    .symbol:hover {
+      transform: scale(1.05);
+    }
+    .info {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #00ff7f;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+    .info.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="symbol" id="symbol"></div>
+  <div class="info" id="info">Kopiert!</div>
+
+  <script>
+    const symbol = document.getElementById("symbol");
+    const info = document.getElementById("info");
+
+    symbol.addEventListener("click", () => {
+      navigator.clipboard.writeText(symbol.textContent).then(() => {
+        info.classList.add("show");
+        setTimeout(() => info.classList.remove("show"), 1500);
+      });
+    });
+  </script>
+
+</body>
+</html>
